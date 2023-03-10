@@ -1,0 +1,15 @@
+pm.test("Status code is 200",()=>{pm.response.to.have.status(200)});
+
+pm.test("Response is 0 ok",()=>{
+     const jsonData = pm.response.json();
+     pm.expect(jsonData.code).to.eql(0);   
+      pm.expect(jsonData.description).to.eql("ok");   
+});
+
+pm.test("Verify User: email, Name, Last Name, Role",()=>{
+     const jsonData = pm.response.json();   
+     pm.expect(jsonData.values.email).to.equal(pm.iterationData.get("email"));  
+     pm.expect(jsonData.values.name).to.equal(pm.iterationData.get("nombres_esperados")); 
+     pm.expect(jsonData.values.lastName).to.equal(pm.iterationData.get("apellidos_esperados"));  
+     pm.expect(jsonData.values.roleCode.toString()).to.equal(pm.iterationData.get("cod_rol_esperado").toString());
+});

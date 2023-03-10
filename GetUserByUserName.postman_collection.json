@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "09adf5a8-0b5b-42dd-b021-ad708e7965e8",
+		"name": "GetUserByUserName",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26258563"
+	},
+	"item": [
+		{
+			"name": "https://innboxservices.azurewebsites.net/api/Service/GetUserByUserName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\",()=>{pm.response.to.have.status(200)});\r",
+							"\r",
+							"pm.test(\"Response is 0 ok\",()=>{\r",
+							"     const jsonData = pm.response.json();\r",
+							"     pm.expect(jsonData.code).to.eql(0);   \r",
+							"      pm.expect(jsonData.description).to.eql(\"ok\");   \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify User: email, Name, Last Name, Role\",()=>{\r",
+							"     const jsonData = pm.response.json();   \r",
+							"     pm.expect(jsonData.values.email).to.equal(pm.iterationData.get(\"email\"));  \r",
+							"     pm.expect(jsonData.values.name).to.equal(pm.iterationData.get(\"nombres_esperados\")); \r",
+							"     pm.expect(jsonData.values.lastName).to.equal(pm.iterationData.get(\"apellidos_esperados\"));  \r",
+							"     pm.expect(jsonData.values.roleCode.toString()).to.equal(pm.iterationData.get(\"cod_rol_esperado\").toString());\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json;charset=UTF-8",
+						"type": "text"
+					},
+					{
+						"key": "charset",
+						"value": "UTF-8",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n \"strUserName\":\"{{email}}\"\r\n}"
+				},
+				"url": {
+					"raw": "https://innboxservices.azurewebsites.net/api/Service/GetUserByUserName",
+					"protocol": "https",
+					"host": [
+						"innboxservices",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"Service",
+						"GetUserByUserName"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
