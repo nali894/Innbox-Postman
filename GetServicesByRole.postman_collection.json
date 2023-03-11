@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "69d0866a-9e38-4afc-893c-6276a036f467",
+		"name": "GetServicesByRole",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16248513"
+	},
+	"item": [
+		{
+			"name": "https://innboxservices.azurewebsites.net/api/Service/GetServicesByRole",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\",()=>{pm.response.to.have.status(200)});\r",
+							"\r",
+							"pm.test(\"Response is 0 ok\",()=>{\r",
+							"     const jsonData = pm.response.json();    \r",
+							"     pm.expect(0).to.eql(jsonData.code);   \r",
+							"      pm.expect(\"ok\").to.eql(jsonData.description);   \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify service: Role, servicetype, user\",()=>{\r",
+							"\r",
+							"     //function\r",
+							"    Object.prototype.FindValue = function(esp,dev,jsonValues){\r",
+							"        var arrResult=[];\r",
+							"        var result=\"Not Found\";        \r",
+							"\r",
+							"            for(var i=0 ; i<jsonValues.values.length ; i++){  \r",
+							"                var data=jsonValues.values[i][dev];\r",
+							"\r",
+							"                if((data!==null && data!==undefined) && (esp!==null && esp!==undefined))\r",
+							"                {\r",
+							"                    if(data.toString()=== esp.toString())\r",
+							"                    {\r",
+							"                        arrResult.push(data);\r",
+							"                    }\r",
+							"                }\r",
+							"                else\r",
+							"                {\r",
+							"                    if(data===esp)\r",
+							"                    {\r",
+							"                        arrResult.push(data);\r",
+							"                    }\r",
+							"                }\r",
+							"             \r",
+							"            } \r",
+							"\r",
+							"            if(arrResult.length>0)\r",
+							"            {\r",
+							"            result=arrResult[0];\r",
+							"            if(result!=null && result!= undefined)\r",
+							"            {\r",
+							"                result=result.toString();\r",
+							"            }\r",
+							"            }  \r",
+							"\r",
+							"            return result;\r",
+							"        };\r",
+							"\r",
+							"    //data\r",
+							"     const jsonData = pm.response.json();\r",
+							"\r",
+							"    //Validate   \r",
+							"    pm.expect(pm.iterationData.get(\"code_Esperado\").toString()).to.equal(_.FindValue(pm.iterationData.get(\"code_Esperado\"),\"code\",jsonData)); \r",
+							"    pm.expect(pm.iterationData.get(\"serviceType_Esperado\").toString()).to.equal(_.FindValue(pm.iterationData.get(\"serviceType_Esperado\"),\"serviceType\",jsonData)); \r",
+							"    pm.expect(pm.iterationData.get(\"role_Esperado\").toString()).to.equal(_.FindValue(pm.iterationData.get(\"role_Esperado\"),\"role\",jsonData)); \r",
+							"    pm.expect(pm.iterationData.get(\"status_Esperado\").toString()).to.equal(_.FindValue(pm.iterationData.get(\"status_Esperado\"),\"status\",jsonData));\r",
+							"    pm.expect(pm.iterationData.get(\"value_Esperado\").toString()).to.equal(_.FindValue(pm.iterationData.get(\"value_Esperado\"),\"value\",jsonData)); \r",
+							"    pm.expect(pm.iterationData.get(\"address_Esperado\").toString()).to.equal(_.FindValue(pm.iterationData.get(\"address_Esperado\"),\"address\",jsonData)); \r",
+							"    pm.expect(pm.iterationData.get(\"startDate_Esperado\").toString()).to.equal(_.FindValue(pm.iterationData.get(\"startDate_Esperado\"),\"startDate\",jsonData)); \r",
+							"    pm.expect(pm.iterationData.get(\"endDate_Esperado\").toString()).to.equal(_.FindValue(pm.iterationData.get(\"endDate_Esperado\"),\"endDate\",jsonData)); \r",
+							"     pm.expect(pm.iterationData.get(\"datetimeCreation_Esperado\").toString()).to.equal(_.FindValue(pm.iterationData.get(\"datetimeCreation_Esperado\"),\"datetimeCreation\",jsonData)); \r",
+							"  pm.expect(pm.iterationData.get(\"createBy_Esperado\").toString()).to.equal(_.FindValue(pm.iterationData.get(\"createBy_Esperado\"),\"createBy\",jsonData));\r",
+							" pm.expect(null).to.equal(_.FindValue(null,\"user\",jsonData)); \r",
+							"   \r",
+							"    \r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json;charset=UTF-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"strRole\":\"{{role}}\"\r\n}"
+				},
+				"url": {
+					"raw": "https://innboxservices.azurewebsites.net/api/Service/GetServicesByRole",
+					"protocol": "https",
+					"host": [
+						"innboxservices",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"Service",
+						"GetServicesByRole"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

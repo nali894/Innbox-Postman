@@ -1,0 +1,66 @@
+pm.test("Status code is 200",()=>{pm.response.to.have.status(200)});
+
+pm.test("Response is 0 ok",()=>{
+     const jsonData = pm.response.json();    
+     pm.expect(0).to.eql(jsonData.code);   
+      pm.expect("ok").to.eql(jsonData.description);   
+});
+
+pm.test("Verify service: Role, servicetype, user",()=>{
+
+     //function
+    Object.prototype.FindValue = function(esp,dev,jsonValues){
+        var arrResult=[];
+        var result="Not Found";        
+
+            for(var i=0 ; i<jsonValues.values.length ; i++){  
+                var data=jsonValues.values[i][dev];
+
+                if((data!==null && data!==undefined) && (esp!==null && esp!==undefined))
+                {
+                    if(data.toString()=== esp.toString())
+                    {
+                        arrResult.push(data);
+                    }
+                }
+                else
+                {
+                    if(data===esp)
+                    {
+                        arrResult.push(data);
+                    }
+                }
+             
+            } 
+
+            if(arrResult.length>0)
+            {
+            result=arrResult[0];
+            if(result!=null && result!= undefined)
+            {
+                result=result.toString();
+            }
+            }  
+
+            return result;
+        };
+
+    //data
+     const jsonData = pm.response.json();
+
+    //Validate   
+    pm.expect(pm.iterationData.get("code_Esperado").toString()).to.equal(_.FindValue(pm.iterationData.get("code_Esperado"),"code",jsonData)); 
+    pm.expect(pm.iterationData.get("serviceType_Esperado").toString()).to.equal(_.FindValue(pm.iterationData.get("serviceType_Esperado"),"serviceType",jsonData)); 
+    pm.expect(pm.iterationData.get("role_Esperado").toString()).to.equal(_.FindValue(pm.iterationData.get("role_Esperado"),"role",jsonData)); 
+    pm.expect(pm.iterationData.get("status_Esperado").toString()).to.equal(_.FindValue(pm.iterationData.get("status_Esperado"),"status",jsonData));
+    pm.expect(pm.iterationData.get("value_Esperado").toString()).to.equal(_.FindValue(pm.iterationData.get("value_Esperado"),"value",jsonData)); 
+    pm.expect(pm.iterationData.get("address_Esperado").toString()).to.equal(_.FindValue(pm.iterationData.get("address_Esperado"),"address",jsonData)); 
+    pm.expect(pm.iterationData.get("startDate_Esperado").toString()).to.equal(_.FindValue(pm.iterationData.get("startDate_Esperado"),"startDate",jsonData)); 
+    pm.expect(pm.iterationData.get("endDate_Esperado").toString()).to.equal(_.FindValue(pm.iterationData.get("endDate_Esperado"),"endDate",jsonData)); 
+     pm.expect(pm.iterationData.get("datetimeCreation_Esperado").toString()).to.equal(_.FindValue(pm.iterationData.get("datetimeCreation_Esperado"),"datetimeCreation",jsonData)); 
+  pm.expect(pm.iterationData.get("createBy_Esperado").toString()).to.equal(_.FindValue(pm.iterationData.get("createBy_Esperado"),"createBy",jsonData));
+ pm.expect(null).to.equal(_.FindValue(null,"user",jsonData)); 
+   
+    
+
+});
