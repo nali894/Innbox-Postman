@@ -95,7 +95,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"strRole\":\"{{role}}\"\r\n}"
+					"raw": "{\r\n  \"strRole\":\"{{strRole}}\"\r\n}"
 				},
 				"url": {
 					"raw": "https://innboxservices.azurewebsites.net/api/Service/GetServicesByRole",

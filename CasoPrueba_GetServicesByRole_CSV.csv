@@ -1,4 +1,8 @@
-role,code_Esperado,serviceType_Esperado,role_Esperado,status_Esperado,value_Esperado,address_Esperado,user_Esperado,createBy_Esperado,startDate_Esperado,endDate_Esperado,datetimeCreation_Esperado
-1,5,Servicio de catering,Mesero,1,60000,Cll. 150 #68-90,null,2,2023-02-25T18:00:00,2023-02-26T03:00:00,2023-02-24T12:00:00
-5,14,Limpieza,Servicios generales,1,70000,Cll. 76 #45-23,null,2,2023-03-09T11:00:00,2023-03-09T23:00:00,2023-03-08T22:00:00
-5,11,Limpieza,Servicios generales,1,45000,Cll. 150 #68-90,null,2,2023-03-09T07:00:00,2023-03-09T13:00:00,2023-03-08T22:00:00
+strRole,code_Esperado,serviceType_Esperado,role_Esperado,status_Esperado,value_Esperado,address_Esperado,user_Esperado,createBy_Esperado,startDate_Esperado,endDate_Esperado,datetimeCreation_Esperado
+2,8,Preparación de alimentos,Cocinero,2,30000,Cll. 76 #45-23,null,2,2023-03-09T08:00:00,2023-03-09T17:00:00,2023-03-08T23:00:00
+2,9,Preparación de alimentos,Cocinero,2,30000,Cll. 76 #45-23,null,2,2023-03-09T08:00:00,2023-03-09T17:00:00,2023-03-08T23:00:00
+2,12,Preparación de alimentos,Cocinero,2,60000,Cll. 52 #24-90,null,2,2023-03-09T09:00:00,2023-03-09T12:00:00,2023-03-08T22:00:00
+2,15,Preparación de alimentos,Cocinero,2,40000,Cra. 80 #25-08,null,2,2023-03-09T12:00:00,2023-03-09T18:00:00,2023-03-08T22:00:00
+5,16,Decoración y presentación,Servicios generales,2,50000,Av. 7 # 93-89,null,2,2023-03-09T05:00:00,2023-03-09T13:00:00,2023-03-08T22:00:00
+5,11,Limpieza,Servicios generales,2,45000,Cll. 150 #68-90,null,2,2023-03-09T07:00:00,2023-03-09T13:00:00,2023-03-08T22:00:00
+5,14,Limpieza,Servicios generales,2,70000,Cll. 76 #45-23,null,2,2023-03-09T11:00:00,2023-03-09T23:00:00,2023-03-08T22:00:00
